@@ -124,7 +124,12 @@ Ext.extend(TP.page.Home,MODx.Component,{
                 ,listeners: {
                     'success': {fn:function(vs) {
                         cb.store.load({
-                            callback: function() {cb.setValue(v);}
+                            callback: function() {
+                                var rs = vs.a.result.object;
+                                cb.setValue(rs.id);
+                                this.switchProfile(rs.id,rs.name);
+                            }
+                            ,scope: this
                         });
                     },scope:this}
                 }
