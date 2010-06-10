@@ -34,7 +34,7 @@ TP.grid.Snippets = function(config) {
     TP.grid.Snippets.superclass.constructor.call(this,config);
     this.propRecord = Ext.data.Record.create([{name: 'id'},{name:'name'}]);
 };
-Ext.extend(TP.grid.Snippets,MODx.grid.LocalGrid,{
+Ext.extend(TP.grid.Snippets,TP.grid.LocalGrid,{
     getMenu: function() {
         return [{
             text: _('packman.snippet_remove')

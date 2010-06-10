@@ -26,7 +26,7 @@
  *
  * @package packman
  */
-class packman {
+class PackMan {
     public $modx = null;
     public $config = array();
 
@@ -56,6 +56,9 @@ class packman {
             'jsUrl' => $assetsUrl.'js/',
             'connectorUrl' => $assetsUrl.'connector.php',
         ),$config);
+
+        $this->modx->addPackage('packman',$this->config['modelPath']);
+        $this->modx->lexicon->load('packman:default');
     }
 
     /**
@@ -68,6 +71,8 @@ class packman {
         $modx =& $this->modx;
         $tp =& $this;
         $viewHeader = include $this->config['controllersPath'].'mgr/header.php';
+
+        $this->modx->regClientCSS($this->config['cssUrl'].'mgr.css');
 
         $f = $this->config['controllersPath'].'mgr/home.php';
         if (file_exists($f)) {

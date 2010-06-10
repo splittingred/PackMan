@@ -12,6 +12,7 @@ TP.panel.Home = function(config) {
         ,items: [{
             html: '<h2>'+_('packman')+'</h2>'
             ,border: false
+            ,id: 'tp-home-header'
             ,cls: 'modx-page-header'
         },{
             xtype: 'modx-tabs'
@@ -68,6 +69,7 @@ TP.panel.Home = function(config) {
                     ,border: false
                 },{
                     xtype: 'tp-grid-templates'
+                    ,id: 'tp-grid-templates'
                     ,preventRender: true
                     ,template: 0
                 }]
@@ -79,6 +81,7 @@ TP.panel.Home = function(config) {
                     ,border: false
                 },{
                     xtype: 'tp-grid-chunks'
+                    ,id: 'tp-grid-chunks'
                     ,preventRender: true
                     ,template: 0
                 }]
@@ -90,6 +93,7 @@ TP.panel.Home = function(config) {
                     ,border: false
                 },{
                     xtype: 'tp-grid-snippets'
+                    ,id: 'tp-grid-snippets'
                     ,preventRender: true
                     ,template: 0
                 }]
@@ -101,6 +105,7 @@ TP.panel.Home = function(config) {
                     ,border: false
                 },{
                     xtype: 'tp-grid-packages'
+                    ,id: 'tp-grid-packages'
                     ,preventRender: true
                     ,template: 0
                 }]

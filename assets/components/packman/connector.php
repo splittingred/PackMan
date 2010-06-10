@@ -32,9 +32,7 @@ require_once MODX_CONNECTORS_PATH.'index.php';
 
 $basePath = $modx->getOption('packman.core_path',null,$modx->getOption('core_path').'components/packman/');
 require_once $basePath.'model/packman/packman.class.php';
-$modx->tp = new packman($modx);
-
-$modx->lexicon->load('packman:default');
+$modx->tp = new PackMan($modx);
 
 /* handle request */
 $path = $modx->getOption('processorsPath',$modx->tp->config,$modx->getOption('core_path').'components/tp/processors/');

@@ -26,5 +26,5 @@
  * @subpackage controllers
  */
 require_once dirname(dirname(__FILE__)).'/model/packman/packman.class.php';
-$tp = new packman($modx);
-return $tp->initialize('mgr');
+$packman = new PackMan($modx);
+return $packman->initialize('mgr');

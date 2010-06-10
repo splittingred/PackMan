@@ -26,11 +26,9 @@ TP.grid.TVs = function(config) {
     TP.grid.TVs.superclass.constructor.call(this,config);
     this.propRecord = Ext.data.Record.create([{name: 'id'},{name:'name'}]);
 };
-Ext.extend(TP.grid.TVs,MODx.grid.LocalGrid,{
+Ext.extend(TP.grid.TVs,TP.grid.LocalGrid,{
     addTV: function(btn,e) {
-        var tmp = Ext.getCmp('tp-combo-template');
-        var r = {}
-        if (tmp) { r.template = tmp.getValue(); }
+        var r = {};
         
         if (!this.windows.addTV) {
             this.windows.addTV = MODx.load({

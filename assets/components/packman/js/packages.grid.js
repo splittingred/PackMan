@@ -25,7 +25,7 @@ TP.grid.Packages = function(config) {
     TP.grid.Packages.superclass.constructor.call(this,config);
     this.propRecord = Ext.data.Record.create([{name: 'id'},{name:'signature'}]);
 };
-Ext.extend(TP.grid.Packages,MODx.grid.LocalGrid,{
+Ext.extend(TP.grid.Packages,TP.grid.LocalGrid,{
     getMenu: function() {
         return [{
             text: _('packman.subpackage_remove')

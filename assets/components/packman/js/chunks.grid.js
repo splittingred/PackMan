@@ -26,7 +26,7 @@ TP.grid.Chunks = function(config) {
     TP.grid.Chunks.superclass.constructor.call(this,config);
     this.propRecord = Ext.data.Record.create([{name: 'id'},{name:'name'}]);
 };
-Ext.extend(TP.grid.Chunks,MODx.grid.LocalGrid,{
+Ext.extend(TP.grid.Chunks,TP.grid.LocalGrid,{
     getMenu: function() {
         return [{
             text: _('packman.chunk_remove')

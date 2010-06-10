@@ -30,7 +30,7 @@ TP.grid.Templates = function(config) {
     TP.grid.Templates.superclass.constructor.call(this,config);
     this.propRecord = Ext.data.Record.create([{name: 'id'},{name:'templatename'}]);
 };
-Ext.extend(TP.grid.Templates,MODx.grid.LocalGrid,{
+Ext.extend(TP.grid.Templates,TP.grid.LocalGrid,{
     getMenu: function() {
         return [{
             text: _('packman.template_remove')
