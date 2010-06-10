@@ -1,31 +1,31 @@
 <?php
 /**
- * Template Packager
+ * PackMan
  *
- * Copyright 2010 by Shaun McCormick <shaun@collabpad.com>
+ * Copyright 2010 by Shaun McCormick <shaun@modxcms.com>
  *
- * This file is part of Template Packager.
+ * This file is part of PackMan.
  *
- * Template Packager is free software; you can redistribute it and/or modify it
+ * PackMan is free software; you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
  * Software Foundation; either version 2 of the License, or (at your option) any
  * later version.
  *
- * Template Packager is distributed in the hope that it will be useful, but
+ * PackMan is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
  * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
  * details.
  *
  * You should have received a copy of the GNU General Public License along with
- * Template Packager; if not, write to the Free Software Foundation, Inc., 59
+ * PackMan; if not, write to the Free Software Foundation, Inc., 59
  * Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
- * @package templatepackager
+ * @package packman
  */
 /**
- * Template Packager build script
+ * PackMan build script
  *
- * @package templatepackager
+ * @package packman
  * @subpackage build
  */
 $mtime = microtime();
@@ -35,9 +35,9 @@ $tstart = $mtime;
 set_time_limit(0);
 
 /* version info */
-define('PKG_NAME','TemplatePackager');
-define('PKG_NAME_LOWER','templatepackager');
-define('PKG_VERSION','2.0.0');
+define('PKG_NAME','packman');
+define('PKG_NAME_LOWER','packman');
+define('PKG_VERSION','1.0.0');
 define('PKG_RELEASE','beta1');
 
 /* set sources */
@@ -47,10 +47,10 @@ $sources= array (
     'build' => $root .'_build/',
     'resolvers' => $root . '_build/resolvers/',
     'data' => $root . '_build/data/',
-    'lexicon' => $root . 'core/components/templatepackager/lexicon/',
-    'source_core' => $root.'core/components/templatepackager',
-    'source_assets' => $root.'assets/components/templatepackager',
-    'docs' => $root.'core/components/templatepackager/docs/',
+    'lexicon' => $root . 'core/components/packman/lexicon/',
+    'source_core' => $root.'core/components/packman',
+    'source_assets' => $root.'assets/components/packman',
+    'docs' => $root.'core/components/packman/docs/',
 );
 unset($root);
 

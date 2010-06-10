@@ -22,33 +22,23 @@
  * @package packman
  */
 /**
- * Adds modActions and modMenus into package
+ * PackMan Connector
  *
  * @package packman
- * @subpackage build
  */
-$action= $modx->newObject('modAction');
-$action->fromArray(array(
-    'id' => 1,
-    'namespace' => PKG_NAME_LOWER,
-    'parent' => 0,
-    'controller' => 'index',
-    'haslayout' => true,
-    'lang_topics' => PKG_NAME_LOWER.':default,lexicon',
-    'assets' => '',
-),'',true,true);
+require_once dirname(dirname(dirname(dirname(__FILE__)))).'/config.core.php';
+require_once MODX_CORE_PATH.'config/'.MODX_CONFIG_KEY.'.inc.php';
+require_once MODX_CONNECTORS_PATH.'index.php';
 
-/* load action into menu */
-$menu= $modx->newObject('modMenu');
-$menu->fromArray(array(
-    'text' => PKG_NAME_LOWER,
-    'parent' => 'components',
-    'description' => PKG_NAME_LOWER.'.menu_desc',
-    'icon' => 'images/icons/plugin.gif',
-    'menuindex' => 0,
-    'params' => '',
-    'handler' => '',
-),'',true,true);
-$menu->addOne($action);
+$basePath = $modx->getOption('packman.core_path',null,$modx->getOption('core_path').'components/packman/');
+require_once $basePath.'model/packman/packman.class.php';
+$modx->tp = new packman($modx);
 
-return $menu;
+$modx->lexicon->load('packman:default');
+
+/* handle request */
+$path = $modx->getOption('processorsPath',$modx->tp->config,$modx->getOption('core_path').'components/tp/processors/');
+$modx->request->handleRequest(array(
+    'processors_path' => $path,
+    'location' => '',
+));

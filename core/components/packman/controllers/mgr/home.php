@@ -22,33 +22,15 @@
  * @package packman
  */
 /**
- * Adds modActions and modMenus into package
- *
  * @package packman
- * @subpackage build
+ * @subpackage controllers
  */
-$action= $modx->newObject('modAction');
-$action->fromArray(array(
-    'id' => 1,
-    'namespace' => PKG_NAME_LOWER,
-    'parent' => 0,
-    'controller' => 'index',
-    'haslayout' => true,
-    'lang_topics' => PKG_NAME_LOWER.':default,lexicon',
-    'assets' => '',
-),'',true,true);
+$modx->regClientStartupScript($tp->config['jsUrl'].'templates.grid.js');
+$modx->regClientStartupScript($tp->config['jsUrl'].'chunks.grid.js');
+$modx->regClientStartupScript($tp->config['jsUrl'].'snippets.grid.js');
+$modx->regClientStartupScript($tp->config['jsUrl'].'packages.grid.js');
+$modx->regClientStartupScript($tp->config['jsUrl'].'home.panel.js');
+$modx->regClientStartupScript($tp->config['jsUrl'].'home.js');
+$output = '<div id="tp-panel-home-div"></div>';
 
-/* load action into menu */
-$menu= $modx->newObject('modMenu');
-$menu->fromArray(array(
-    'text' => PKG_NAME_LOWER,
-    'parent' => 'components',
-    'description' => PKG_NAME_LOWER.'.menu_desc',
-    'icon' => 'images/icons/plugin.gif',
-    'menuindex' => 0,
-    'params' => '',
-    'handler' => '',
-),'',true,true);
-$menu->addOne($action);
-
-return $menu;
+return $output;

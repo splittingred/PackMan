@@ -16,39 +16,22 @@
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License along with
- * PackMan; if not, write to the Free Software Foundation, Inc., 59
+ * ; if not, write to the Free Software Foundation, Inc., 59
  * Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  * @package packman
  */
 /**
- * Adds modActions and modMenus into package
- *
  * @package packman
- * @subpackage build
+ * @subpackage controllers
  */
-$action= $modx->newObject('modAction');
-$action->fromArray(array(
-    'id' => 1,
-    'namespace' => PKG_NAME_LOWER,
-    'parent' => 0,
-    'controller' => 'index',
-    'haslayout' => true,
-    'lang_topics' => PKG_NAME_LOWER.':default,lexicon',
-    'assets' => '',
-),'',true,true);
+$modx->regClientStartupScript($tp->config['jsUrl'].'packman.js');
+$modx->regClientStartupHTMLBlock('<script type="text/javascript">
+Ext.onReady(function() {
+    TP.config = '.$modx->toJSON($tp->config).';
+    TP.config.connector_url = "'.$tp->config['connectorUrl'].'";
+    TP.request = '.$modx->toJSON($_GET).';
+});
+</script>');
 
-/* load action into menu */
-$menu= $modx->newObject('modMenu');
-$menu->fromArray(array(
-    'text' => PKG_NAME_LOWER,
-    'parent' => 'components',
-    'description' => PKG_NAME_LOWER.'.menu_desc',
-    'icon' => 'images/icons/plugin.gif',
-    'menuindex' => 0,
-    'params' => '',
-    'handler' => '',
-),'',true,true);
-$menu->addOne($action);
-
-return $menu;
+return '';
