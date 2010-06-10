@@ -96,6 +96,11 @@ Ext.extend(TP.page.Home,MODx.Component,{
         Ext.getCmp('tp-grid-snippets').store.removeAll();
         Ext.getCmp('tp-grid-packages').store.removeAll();
         TP.profileLoaded = 0;
+
+        Ext.getCmp('tp-btn-profile-save').hide();
+        Ext.getCmp('tp-btn-profile-save-sp').hide();
+        Ext.getCmp('tp-btn-profile-remove').hide();
+        Ext.getCmp('tp-btn-profile-remove-sp').hide();
     }
 
 
@@ -129,6 +134,15 @@ Ext.extend(TP.page.Home,MODx.Component,{
         this.windows.createProfile.show(cb.el.dom);
     }
 
+    ,switchProfile: function(id,name) {
+        Ext.getCmp('tp-home-header').update('<h2>'+_('packman')+' - '+_('profile')+': '+name+'</h2>');
+        TP.profileLoaded = id;
+        Ext.getCmp('tp-btn-profile-save').show();
+        Ext.getCmp('tp-btn-profile-save-sp').show();
+        Ext.getCmp('tp-btn-profile-remove').show();
+        Ext.getCmp('tp-btn-profile-remove-sp').show();
+    }
+
     ,loadProfile: function(v) {
         MODx.Ajax.request({
             url: TP.config.connector_url
@@ -143,12 +157,7 @@ Ext.extend(TP.page.Home,MODx.Component,{
 
                     var d = [];
 
-                    Ext.getCmp('tp-home-header').update('<h2>'+_('packman')+' - '+_('profile')+': '+r.object.name+'</h2>');
-                    TP.profileLoaded = v;
-                    Ext.getCmp('tp-btn-profile-save').show();
-                    Ext.getCmp('tp-btn-profile-save-sp').show();
-                    Ext.getCmp('tp-btn-profile-remove').show();
-                    Ext.getCmp('tp-btn-profile-remove-sp').show();
+                    this.switchProfile(v,r.object.name);
 
 
                     if (r.object.templates) {
