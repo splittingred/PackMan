@@ -1,8 +1,8 @@
 ----------------------------
 Extension: PackMan
 ----------------------------
-Version: 1.0.0
-Since: June 10th, 2010
+Version: 1.1.0
+Since: June 11th, 2010
 Author: Shaun McCormick <shaun@modxcms.com>
 License: GNU GPLv2 (or later at your option)
 
