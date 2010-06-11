@@ -8,7 +8,7 @@ TP.grid.Directories = function(config) {
             action: 'directory/getList'
         }
         ,action: 'directory/getList'
-        ,fields: ['id','source','target']
+        ,fields: ['source','target']
         ,data: []
         ,autoHeight: true
         ,columns: [{
