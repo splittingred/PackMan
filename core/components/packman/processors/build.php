@@ -75,13 +75,11 @@ $pathLookups = array(
         '{base_path}',
         '{core_path}',
         '{assets_path}',
-        ' ',
     ),
     'targets' => array(
         $modx->getOption('base_path',null,MODX_BASE_PATH),
         $modx->getOption('core_path',null,MODX_CORE_PATH),
         $modx->getOption('assets_path',null,MODX_ASSETS_PATH),
-        '',
     )
 );
 
@@ -277,6 +275,38 @@ $attr = array(
     ),
 );
 $vehicle = $builder->createVehicle($category,$attr);
+
+
+/* add user-specified directories */
+$directoryList = $modx->fromJSON($_POST['directories']);
+if (!empty($directoryList)) {
+    foreach ($directoryList as $directoryData) {
+        if (empty($directoryData['source']) || empty($directoryData['target'])) continue;
+
+        $source = str_replace($pathLookups['sources'],$pathLookups['targets'],$directoryData['source']);
+        if (empty($source)) continue;
+        $l = strlen($source);
+        if (substr($source,$l-1,$l) != '/') $source .= '/';
+        if (!file_exists($source) || !is_dir($source)) continue;
+
+        $target = str_replace($pathLookups['sources'],array(
+            '".MODX_BASE_PATH."',
+            '".MODX_CORE_PATH."',
+            '".MODX_ASSETS_PATH."',
+        ),$directoryData['target']);
+        if (empty($target)) continue;
+        $l = strlen($target);
+        if (substr($target,$l-1,$l) != '/') $target .= '/';
+
+        $target = 'return "'.$target.'";';
+
+        $directories[] = array(
+            'source' => $source,
+            'target' => $target,
+        );
+    }
+}
+
 /* add directories to category vehicle */
 if (!empty($directories)) {
     foreach ($directories as $directory) {

@@ -96,6 +96,7 @@ Ext.extend(TP.page.Home,MODx.Component,{
         Ext.getCmp('tp-grid-snippets').store.removeAll();
         Ext.getCmp('tp-grid-plugins').store.removeAll();
         Ext.getCmp('tp-grid-packages').store.removeAll();
+        Ext.getCmp('tp-grid-directories').store.removeAll();
         TP.profileLoaded = 0;
 
         Ext.getCmp('tp-btn-profile-save').hide();
@@ -113,6 +114,7 @@ Ext.extend(TP.page.Home,MODx.Component,{
         vs.snippets = Ext.getCmp('tp-grid-snippets').getData();
         vs.plugins = Ext.getCmp('tp-grid-plugins').getData();
         vs.packages = Ext.getCmp('tp-grid-packages').getData();
+        vs.directories = Ext.getCmp('tp-grid-directories').getData();
         return Ext.util.JSON.encode(vs);
     }
     ,createProfile: function(cb) {
@@ -192,6 +194,11 @@ Ext.extend(TP.page.Home,MODx.Component,{
                         Ext.getCmp('tp-grid-packages').getStore().loadData(d);
                     }
 
+                    if (r.object.directories) {
+                        d = Ext.decode(r.object.directories);
+                        Ext.getCmp('tp-grid-directories').getStore().loadData(d);
+                    }
+
                 },scope:this}
             }
         });
@@ -256,11 +263,19 @@ TP.window.CreateProfile = function(config) {
             ,id: 'tp-'+this.ident+'-data'
         },{
             xtype: 'textfield'
-            ,fieldLabel: _('packman.profile_name')
+            ,fieldLabel: _('packman.name')
             ,description: _('packman.profile_name_desc')
             ,name: 'name'
             ,id: 'tp-'+this.ident+'-name'
+            ,width: 300
             ,allowBlank: false
+        },{
+            xtype: 'textarea'
+            ,fieldLabel: _('packman.description')
+            ,description: _('packman.profile_description_desc')
+            ,name: 'description'
+            ,id: 'tp-'+this.ident+'-description'
+            ,width: 300
         }]
     });
     TP.window.CreateProfile.superclass.constructor.call(this,config);

@@ -6,7 +6,6 @@ TP.grid.Chunks = function(config) {
         ,url: TP.config.connector_url
         ,baseParams: {
             action: 'chunk/getList'
-            ,template: config.template
         }
         ,action: 'chunk/getList'
         ,fields: ['id','name']

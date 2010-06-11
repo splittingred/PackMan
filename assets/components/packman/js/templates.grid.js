@@ -6,7 +6,6 @@ TP.grid.Templates = function(config) {
         ,url: TP.config.connector_url
         ,baseParams: {
             action: 'tv/getList'
-            ,template: config.template
         }
         ,action: 'tv/getList'
         ,fields: ['id','name','directory']

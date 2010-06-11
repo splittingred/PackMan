@@ -5,8 +5,7 @@ TP.grid.Snippets = function(config) {
         id: 'tp-grid-snippets'
         ,url: TP.config.connector_url
         ,baseParams: {
-            action: 'tsnippet/getList'
-            ,template: config.template
+            action: 'snippet/getList'
         }
         ,action: 'snippet/getList'
         ,fields: ['id','name','assets_path','core_path']
