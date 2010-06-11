@@ -136,8 +136,8 @@ Ext.extend(TP.panel.Home,MODx.FormPanel,{
             templates: Ext.getCmp('tp-grid-templates').encode()
             ,chunks: Ext.getCmp('tp-grid-chunks').encode()
             ,snippets: Ext.getCmp('tp-grid-snippets').encode()
+            ,plugins: Ext.getCmp('tp-grid-plugins').encode()
             ,packages: Ext.getCmp('tp-grid-packages').encode()
-            ,packages: Ext.getCmp('tp-grid-plugins').encode()
         });
     }
     ,success: function(o) {
@@ -149,8 +149,8 @@ Ext.extend(TP.panel.Home,MODx.FormPanel,{
             Ext.getCmp('tp-grid-templates').getStore().commitChanges();
             Ext.getCmp('tp-grid-chunks').getStore().commitChanges();
             Ext.getCmp('tp-grid-snippets').getStore().commitChanges();
-            Ext.getCmp('tp-grid-packages').getStore().commitChanges();
             Ext.getCmp('tp-grid-plugins').getStore().commitChanges();
+            Ext.getCmp('tp-grid-packages').getStore().commitChanges();
         }
     }
 });

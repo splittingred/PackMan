@@ -167,14 +167,31 @@ if (!empty($pluginList)) {
         $plugin = $modx->getObject('modPlugin',$pluginData['id']);
         if (empty($plugin)) continue;
 
-        /* TODO: add plugin events */
+        $pluginEvents = $plugin->getMany('PluginEvents');
+        $plugin->addMany($pluginEvents);
+
+        $attr = array (
+            xPDOTransport::PRESERVE_KEYS => false,
+            xPDOTransport::UPDATE_OBJECT => true,
+            xPDOTransport::UNIQUE_KEY => 'name',
+            xPDOTransport::RELATED_OBJECTS => true,
+            xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array (
+                'PluginEvents' => array(
+                    xPDOTransport::PRESERVE_KEYS => true,
+                    xPDOTransport::UPDATE_OBJECT => false,
+                    xPDOTransport::UNIQUE_KEY => array('pluginid','event'),
+                ),
+            ),
+        );
+        $vehicle = $builder->createVehicle($plugin,$attr);
+        $builder->putVehicle($vehicle);
 
         $plugins[] = $plugin;
     }
     if (empty($plugins)) {
         return $modx->error->failure('Error packaging plugins!');
     }
-    $category->addMany($plugins,'Plugins');
+    //$category->addMany($plugins,'Plugins');
     $modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($plugins).' plugins...');
 }
 
@@ -257,11 +274,6 @@ $attr = array(
             xPDOTransport::UPDATE_OBJECT => true,
             xPDOTransport::UNIQUE_KEY => 'name',
         ),
-        'Plugins' => array (
-            xPDOTransport::PRESERVE_KEYS => false,
-            xPDOTransport::UPDATE_OBJECT => true,
-            xPDOTransport::UNIQUE_KEY => 'name',
-        ),
     ),
 );
 $vehicle = $builder->createVehicle($category,$attr);
@@ -272,6 +284,8 @@ if (!empty($directories)) {
     }
     $modx->log(modX::LOG_LEVEL_INFO,'Added '.count($directories).' directories to category...');
 }
+
+
 
 /* create dynamic TemplateVarTemplate resolver */
 if (!empty($tvMap)) {
