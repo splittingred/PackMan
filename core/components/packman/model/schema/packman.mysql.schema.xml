@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="packman" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM">
+    <object class="pacProfile" table="packman_profile" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default="" index="index" />
+        <field key="description" dbtype="text" phptype="string" null="false" default="" />
+        <field key="data" dbtype="text" phptype="json" null="false" default="{}" />
+    </object>
+</model>

@@ -1,0 +1,11 @@
+.x-combo-list-item hr {
+    border: 0;
+    margin: 2px 0;
+    color: black;
+    border-color: #aaa !important;
+    background-color: #aaa;
+}
+.x-window p {
+    margin: 7px 3px;
+    color: #444;
+}
