@@ -98,6 +98,18 @@ TP.panel.Home = function(config) {
                     ,template: 0
                 }]
             },{
+                title: _('packman.plugins')
+                ,bodyStyle: 'padding: 15px;'
+                ,items: [{
+                    html: _('packman.plugins.intro_msg')
+                    ,border: false
+                },{
+                    xtype: 'tp-grid-plugins'
+                    ,id: 'tp-grid-plugins'
+                    ,preventRender: true
+                    ,template: 0
+                }]
+            },{
                 title: _('packman.subpackages')
                 ,bodyStyle: 'padding: 15px;'
                 ,items: [{
@@ -125,6 +137,7 @@ Ext.extend(TP.panel.Home,MODx.FormPanel,{
             ,chunks: Ext.getCmp('tp-grid-chunks').encode()
             ,snippets: Ext.getCmp('tp-grid-snippets').encode()
             ,packages: Ext.getCmp('tp-grid-packages').encode()
+            ,packages: Ext.getCmp('tp-grid-plugins').encode()
         });
     }
     ,success: function(o) {
@@ -137,6 +150,7 @@ Ext.extend(TP.panel.Home,MODx.FormPanel,{
             Ext.getCmp('tp-grid-chunks').getStore().commitChanges();
             Ext.getCmp('tp-grid-snippets').getStore().commitChanges();
             Ext.getCmp('tp-grid-packages').getStore().commitChanges();
+            Ext.getCmp('tp-grid-plugins').getStore().commitChanges();
         }
     }
 });

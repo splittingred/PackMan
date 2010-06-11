@@ -94,6 +94,7 @@ Ext.extend(TP.page.Home,MODx.Component,{
         Ext.getCmp('tp-grid-templates').store.removeAll();
         Ext.getCmp('tp-grid-chunks').store.removeAll();
         Ext.getCmp('tp-grid-snippets').store.removeAll();
+        Ext.getCmp('tp-grid-plugins').store.removeAll();
         Ext.getCmp('tp-grid-packages').store.removeAll();
         TP.profileLoaded = 0;
 
@@ -110,6 +111,7 @@ Ext.extend(TP.page.Home,MODx.Component,{
         vs.templates = Ext.getCmp('tp-grid-templates').getData();
         vs.chunks = Ext.getCmp('tp-grid-chunks').getData();
         vs.snippets = Ext.getCmp('tp-grid-snippets').getData();
+        vs.plugins = Ext.getCmp('tp-grid-plugins').getData();
         vs.packages = Ext.getCmp('tp-grid-packages').getData();
         return Ext.util.JSON.encode(vs);
     }
@@ -149,6 +151,7 @@ Ext.extend(TP.page.Home,MODx.Component,{
     }
 
     ,loadProfile: function(v) {
+        this.resetProfile();
         MODx.Ajax.request({
             url: TP.config.connector_url
             ,params: {
@@ -161,7 +164,6 @@ Ext.extend(TP.page.Home,MODx.Component,{
                     p.getForm().setValues(r.object.data.info);
 
                     var d = [];
-
                     this.switchProfile(v,r.object.name);
 
 
@@ -178,6 +180,11 @@ Ext.extend(TP.page.Home,MODx.Component,{
                     if (r.object.snippets) {
                         d = Ext.decode(r.object.snippets);
                         Ext.getCmp('tp-grid-snippets').getStore().loadData(d);
+                    }
+
+                    if (r.object.plugins) {
+                        d = Ext.decode(r.object.plugins);
+                        Ext.getCmp('tp-grid-plugins').getStore().loadData(d);
                     }
 
                     if (r.object.packages) {

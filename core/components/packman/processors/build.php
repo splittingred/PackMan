@@ -158,6 +158,26 @@ if (!empty($snippetList)) {
     $modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($snippets).' Snippets...');
 }
 
+/* add Plugins */
+$pluginList = $modx->fromJSON($_POST['plugins']);
+if (!empty($pluginList)) {
+    $plugins = array();
+    foreach ($pluginList as $pluginData) {
+        if (empty($pluginData['id'])) continue;
+        $plugin = $modx->getObject('modPlugin',$pluginData['id']);
+        if (empty($plugin)) continue;
+
+        /* TODO: add plugin events */
+
+        $plugins[] = $plugin;
+    }
+    if (empty($plugins)) {
+        return $modx->error->failure('Error packaging plugins!');
+    }
+    $category->addMany($plugins,'Plugins');
+    $modx->log(modX::LOG_LEVEL_INFO,'Packaged in '.count($plugins).' plugins...');
+}
+
 /* add Templates */
 $tvs = array();
 $tvMap = array();
@@ -233,6 +253,11 @@ $attr = array(
             xPDOTransport::UNIQUE_KEY => 'templatename',
         ),
         'Snippets' => array (
+            xPDOTransport::PRESERVE_KEYS => false,
+            xPDOTransport::UPDATE_OBJECT => true,
+            xPDOTransport::UNIQUE_KEY => 'name',
+        ),
+        'Plugins' => array (
             xPDOTransport::PRESERVE_KEYS => false,
             xPDOTransport::UPDATE_OBJECT => true,
             xPDOTransport::UNIQUE_KEY => 'name',

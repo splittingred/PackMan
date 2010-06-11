@@ -28,6 +28,7 @@
 $modx->regClientStartupScript($tp->config['jsUrl'].'templates.grid.js');
 $modx->regClientStartupScript($tp->config['jsUrl'].'chunks.grid.js');
 $modx->regClientStartupScript($tp->config['jsUrl'].'snippets.grid.js');
+$modx->regClientStartupScript($tp->config['jsUrl'].'plugins.grid.js');
 $modx->regClientStartupScript($tp->config['jsUrl'].'packages.grid.js');
 $modx->regClientStartupScript($tp->config['jsUrl'].'home.panel.js');
 $modx->regClientStartupScript($tp->config['jsUrl'].'home.js');
