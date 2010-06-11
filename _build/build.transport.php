@@ -92,6 +92,9 @@ $vehicle->resolve('file',array(
     'source' => $sources['source_assets'],
     'target' => "return MODX_ASSETS_PATH . 'components/';",
 ));
+$vehicle->resolve('php',array(
+    'source' => $sources['resolvers'] . 'tables.resolver.php',
+));
 $builder->putVehicle($vehicle);
 unset($vehicle,$action);
 
