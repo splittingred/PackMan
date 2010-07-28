@@ -150,7 +150,6 @@ Ext.extend(TP.panel.Home,MODx.FormPanel,{
     ,success: function(o) {
         if (o.result.success) {
             var name = o.result.message;
-            location.href = TP.config.connector_url+'?action=build&download='+name;
 
             Ext.getCmp('tp-btn-export').setDisabled(false);
             Ext.getCmp('tp-grid-templates').getStore().commitChanges();
@@ -159,6 +158,8 @@ Ext.extend(TP.panel.Home,MODx.FormPanel,{
             Ext.getCmp('tp-grid-plugins').getStore().commitChanges();
             Ext.getCmp('tp-grid-packages').getStore().commitChanges();
             Ext.getCmp('tp-grid-directories').getStore().commitChanges();
+            
+            location.href = TP.config.connector_url+'?action=build&download='+name+'&HTTP_MODAUTH='+MODx.siteId;
         }
     }
 });

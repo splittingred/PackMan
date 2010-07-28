@@ -2,6 +2,7 @@ Changelog for PackMan
 
 PackMan 1.1.0
 ====================================
+- Fixed auth check
 - Added ability to package in Plugins
 - Added Profiles, which allow you to save package form state
 
