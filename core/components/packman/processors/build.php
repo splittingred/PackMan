@@ -333,9 +333,13 @@ if (!empty($tvMap)) {
 /* add category vehicle to build */
 $builder->putVehicle($vehicle);
 
+
+
 /* add in packages */
 $packageList = $modx->fromJSON($_POST['packages']);
 if (!empty($packageList)) {
+    $modx->addPackage('modx.transport',$modx->getOption('core_path').'model/');
+
     $packageDir = $modx->getOption('core_path',null,MODX_CORE_PATH).'packages/';
     $spAttr = array('vehicle_class' => 'xPDOTransportVehicle');
     $spReplaces = array(
@@ -343,10 +347,22 @@ if (!empty($packageList)) {
         '{version_major}',
         '{name}',
     );
+    $resolverReplaces = array(
+        '{signature}',
+        '{provider}',
+        '{attributes}',
+        '{metadata}',
+    );
 
     foreach ($packageList as $packageData) {
         $file = $packageDir.$packageData['signature'].'.transport.zip';
         if (!file_exists($file)) continue;
+
+        $package = $modx->getObject('transport.modTransportPackage',array('signature' => $packageData['signature']));
+        if (!$package) {
+            $modx->log(modX::LOG_LEVEL_ERROR,'[PackMan] Package could not be found with signature: '.$packageData['signature']);
+            continue;
+        }
 
         /* create package as subpackage */
         $vehicle = $builder->createVehicle(array(
@@ -370,6 +386,22 @@ if (!empty($packageList)) {
 
         /* add validator to vehicle */
         $vehicle->validate('php',array(
+            'source' => $cachePath.$cacheKey,
+        ));
+
+        /* add resolver to subpackage to add to packages grid */
+        $cacheKey = 'packman/resolvers/'.$packageData['signature'].'.php';
+        $resolver = file_get_contents($modx->tp->config['includesPath'].'resolve.subpackage.php');
+        $resolver = str_replace($resolverReplaces,array(
+            $packageData['signature'],
+            $package->get('provider'),
+            str_replace("'","\'",$modx->toJSON($package->get('attributes'))),
+            str_replace("'","\'",$modx->toJSON($package->get('metadata'))),
+        ),$resolver);
+        $modx->cacheManager->writeFile($cachePath.$cacheKey,$resolver);
+
+        /* add resolver to vehicle */
+        $vehicle->resolve('php',array(
             'source' => $cachePath.$cacheKey,
         ));
 
