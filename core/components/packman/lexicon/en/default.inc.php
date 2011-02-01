@@ -61,6 +61,7 @@ $_lang['packman.license_desc'] = 'A license to require users to agree to on inst
 $_lang['packman.menu_desc'] = 'A tool for creating simple Transport Packages.';
 $_lang['packman.name'] = 'Name';
 $_lang['packman.mypackage'] = 'MyPackage';
+$_lang['packman.package'] = 'Package';
 $_lang['packman.package_name'] = 'Package Name';
 $_lang['packman.package_name_desc'] = 'The name of the Package that will be created. A Category will be created with this name, and all packaged Elements will be assigned to it.';
 $_lang['packman.plugin_add'] = 'Add Plugin';

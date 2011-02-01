@@ -86,7 +86,7 @@ $pathLookups = array(
 $modx->loadClass('transport.modPackageBuilder','',false, true);
 $builder = new modPackageBuilder($modx);
 $builder->createPackage($name_lower,$version,$release);
-$builder->registerNamespace($name_lower,false,true,'{assets_path}templates/'.$name_lower.'/');
+$builder->registerNamespace($name_lower,false,true,'{core_path}components/'.$name_lower.'/');
 
 /* create category */
 $category= $modx->newObject('modCategory');

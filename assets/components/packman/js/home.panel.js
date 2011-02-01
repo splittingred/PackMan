@@ -19,7 +19,7 @@ TP.panel.Home = function(config) {
             ,border: true
             ,defaults: { border: false ,autoHeight: true }
             ,items: [{
-                title: _('packman')
+                title: _('packman.package')
                 ,draggable: false
                 ,layout: 'form'
                 ,labelWidth: 200
