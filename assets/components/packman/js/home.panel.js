@@ -50,6 +50,13 @@ TP.panel.Home = function(config) {
                     ,width: 300
                 },{
                     xtype: 'textfield'
+                    ,inputType: 'file'
+                    ,name: 'changelog'
+                    ,fieldLabel: _('packman.changelog')
+                    ,description: _('packman.changelog_desc')
+                    ,width: 300
+                },{
+                    xtype: 'textfield'
                     ,name: 'version'
                     ,fieldLabel: _('packman.version')
                     ,description: _('packman.version_desc')

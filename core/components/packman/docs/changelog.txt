@@ -2,6 +2,7 @@ Changelog for PackMan
 
 PackMan 1.2.0
 ====================================
+- [#14] Added changelog option to builder
 - [#6] Fix bug where package namespace path is set incorrectly
 - [#4] Rename first tab title to Package
 - Subpackages now install into packages grid and can be updated

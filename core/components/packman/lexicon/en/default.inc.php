@@ -30,6 +30,7 @@
 $_lang['packman'] = 'PackMan';
 $_lang['packman.assets_path'] = 'Assets Path';
 $_lang['packman.assets_path_desc'] = 'The directory that this Snippet hosts its assets files in. If it is not found, it will be ignored.';
+$_lang['packman.changelog'] = 'Changelog';
 $_lang['packman.chunk'] = 'Chunk';
 $_lang['packman.chunk_add'] = 'Add Chunk';
 $_lang['packman.chunk_desc'] = 'The Chunk to package in.';

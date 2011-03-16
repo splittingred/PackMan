@@ -418,6 +418,9 @@ if (isset($_FILES['license']) && !empty($_FILES['license']) && $_FILES['license'
 if (isset($_FILES['readme']) && !empty($_FILES['readme']) && $_FILES['readme']['error'] == UPLOAD_ERR_OK) {
     $packageAttributes['readme'] = file_get_contents($_FILES['readme']['tmp_name']);
 }
+if (isset($_FILES['changelog']) && !empty($_FILES['changelog']) && $_FILES['changelog']['error'] == UPLOAD_ERR_OK) {
+    $packageAttributes['changelog'] = file_get_contents($_FILES['changelog']['tmp_name']);
+}
 if (!empty($packageAttributes)) $builder->setPackageAttributes($packageAttributes);
 
 
