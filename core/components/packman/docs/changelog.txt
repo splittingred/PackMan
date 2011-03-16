@@ -2,6 +2,7 @@ Changelog for PackMan
 
 PackMan 1.2.0
 ====================================
+- [#10] Add ability to unload a profile after loading it, consolidate buttons
 - [#14] Added changelog option to builder
 - [#6] Fix bug where package namespace path is set incorrectly
 - [#4] Rename first tab title to Package

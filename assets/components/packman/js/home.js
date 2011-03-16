@@ -8,25 +8,36 @@ TP.page.Home = function(config) {
         formpanel: 'tp-panel-home'
         ,id: 'tp-home'
         ,buttons: [{
-            text: _('packman.profile_save')
-            ,handler: this.saveProfile
-            ,scope: this
-            ,id: 'tp-btn-profile-save'
+            text: _('packman.profile_options')
+            ,handler: Ext.emptyFn
+            ,id: 'tp-menu-profile-options'
             ,hidden: true
-        },{
-            xtype: 'tbseparator'
-            ,id: 'tp-btn-profile-save-sp'
-            ,hidden: true
-        },{
-            text: _('packman.profile_remove')
-            ,handler: this.removeProfile
-            ,scope: this
-            ,id: 'tp-btn-profile-remove'
-            ,hidden: true
-        },{
-            xtype: 'tbseparator'
-            ,id: 'tp-btn-profile-remove-sp'
-            ,hidden: true
+            ,menu: {
+                xtype: 'menu'
+                ,plain: true
+                ,autoWidth: true
+                ,defaults: {
+                    width: '100%'
+                    ,style: 'padding: 5px 25px 5px 10px;'
+                }
+                ,items: [{
+                    text: _('packman.profile_save')
+                    ,handler: this.saveProfile
+                    ,scope: this
+                    ,id: 'tp-btn-profile-save'
+                    ,cls: 'x-btn-text'
+                },{
+                    text: _('packman.profile_remove')
+                    ,handler: this.removeProfile
+                    ,scope: this
+                    ,id: 'tp-btn-profile-remove'
+                },{
+                    text: _('packman.unload_profile')
+                    ,handler: function() { this.resetProfile(true); }
+                    ,scope: this
+                    ,id: 'tp-btn-profile-unload'
+                }]
+            }
         },{
             xtype: 'tp-combo-profile'
             ,id: 'tp-combo-profile'
@@ -87,7 +98,8 @@ Ext.extend(TP.page.Home,MODx.Component,{
         });
     }
 
-    ,resetProfile: function() {
+    ,resetProfile: function(rc) {
+        rc = rc || false;
         Ext.getCmp('tp-panel-home').getForm().reset();
         Ext.getCmp('tp-home-header').update('<h2>'+_('packman')+'</h2>');
 
@@ -99,10 +111,12 @@ Ext.extend(TP.page.Home,MODx.Component,{
         Ext.getCmp('tp-grid-directories').store.removeAll();
         TP.profileLoaded = 0;
 
-        Ext.getCmp('tp-btn-profile-save').hide();
-        Ext.getCmp('tp-btn-profile-save-sp').hide();
-        Ext.getCmp('tp-btn-profile-remove').hide();
-        Ext.getCmp('tp-btn-profile-remove-sp').hide();
+        var b = Ext.getCmp('tp-menu-profile-options');
+        if (b) { b.hide(); }
+
+        if (rc) {
+            Ext.getCmp('tp-combo-profile').reset();
+        }
     }
 
 
@@ -146,10 +160,8 @@ Ext.extend(TP.page.Home,MODx.Component,{
     ,switchProfile: function(id,name) {
         Ext.getCmp('tp-home-header').update('<h2>'+_('packman')+' - '+_('profile')+': '+name+'</h2>');
         TP.profileLoaded = id;
-        Ext.getCmp('tp-btn-profile-save').show();
-        Ext.getCmp('tp-btn-profile-save-sp').show();
-        Ext.getCmp('tp-btn-profile-remove').show();
-        Ext.getCmp('tp-btn-profile-remove-sp').show();
+        var b = Ext.getCmp('tp-menu-profile-options');
+        if (b) { b.show(); }
     }
 
     ,loadProfile: function(v) {
