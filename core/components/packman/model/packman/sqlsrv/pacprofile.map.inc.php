@@ -15,7 +15,7 @@ $xpdo_meta_map['pacProfile']= array (
   array (
     'name' => 
     array (
-      'dbtype' => 'varchar',
+      'dbtype' => 'nvarchar',
       'precision' => '255',
       'phptype' => 'string',
       'null' => false,
@@ -24,14 +24,16 @@ $xpdo_meta_map['pacProfile']= array (
     ),
     'description' => 
     array (
-      'dbtype' => 'text',
+      'dbtype' => 'nvarchar',
+      'precision' => 'max',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
     ),
     'data' => 
     array (
-      'dbtype' => 'text',
+      'dbtype' => 'nvarchar',
+      'precision' => 'max',
       'phptype' => 'json',
       'null' => false,
       'default' => '{}',

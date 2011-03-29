@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="packman" baseClass="xPDOObject" platform="sqlsrv">
+    <object class="pacProfile" table="packman_profile" extends="xPDOSimpleObject">
+        <field key="name" dbtype="nvarchar" precision="255" phptype="string" null="false" default="" index="index" />
+        <field key="description" dbtype="nvarchar" precision="max" phptype="string" null="false" default="" />
+        <field key="data" dbtype="nvarchar" precision="max" phptype="json" null="false" default="{}" />
+
+        <index alias="name" name="name" primary="false" unique="false" type="BTREE">
+            <column key="name" length="" collation="A" null="false" />
+        </index>
+    </object>
+</model>

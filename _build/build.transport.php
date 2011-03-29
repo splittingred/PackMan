@@ -38,7 +38,7 @@ set_time_limit(0);
 define('PKG_NAME','packman');
 define('PKG_NAME_LOWER','packman');
 define('PKG_VERSION','1.2.0');
-define('PKG_RELEASE','rc3');
+define('PKG_RELEASE','pl');
 
 /* set sources */
 $root = dirname(dirname(__FILE__)).'/';
